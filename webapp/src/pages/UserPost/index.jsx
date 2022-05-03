@@ -7,7 +7,7 @@ import MarkdownViewer from 'components/MdViewer';
 import CommentContainer from 'components/CommentContainer';
 import { getUserDetail } from 'apiAction/user';
 import { handleComment } from 'utils/handleComment';
-import { getCookie } from 'utils/cookie';
+import { getUserCookie } from 'utils/cookie';
 import { USER } from 'constant';
 import { Board, Button, Box, Box2, Box3 } from './styleu';
 
@@ -30,7 +30,7 @@ function UserPost() {
   const onClickback = () => {
     navigate(-1);
   };
-  const userInfo = getCookie('userInfo');
+  const userInfo = getUserCookie();
   // const { myData } = useSelector((state) => state.auth);
   const myNickname = userInfo?.name;
   const myId = userInfo?.id;

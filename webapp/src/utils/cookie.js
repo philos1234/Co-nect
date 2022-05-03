@@ -4,9 +4,11 @@ import { setDefaultProfileImage } from './constant';
 
 const cookies = new Cookies();
 
-export const setCookie = (name, value, option) => cookies.set(name, value, { ...option });
+const setCookie = (name, value, option) => cookies.set(name, value, { ...option });
 
-export const getCookie = (name) => cookies.get(name);
+const getCookie = (name) => cookies.get(name);
+
+const removeCookie = (name) => cookies.remove(name);
 
 export const getUserCookie = () => {
   const userInfo = getCookie(USER_INFO);
@@ -16,8 +18,6 @@ export const getUserCookie = () => {
   const { img } = userInfo;
   return { ...userInfo, img: setDefaultProfileImage(img) };
 };
-
-const removeCookie = (name) => cookies.remove(name);
 
 export const removeLoginCookie = () => {
   removeCookie(AUTH_KEY);
