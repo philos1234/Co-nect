@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpServletResponse;
+import java.io.UnsupportedEncodingException;
 import java.util.Optional;
 
 import static com.projectmatching.app.constant.ResponseTemplateStatus.LOGIN_USER_ERROR;
@@ -49,13 +50,13 @@ public class UserSignInServiceImpl implements UserSignInService {
                 UserLoginResDto userLoginResDto = Optional.ofNullable(qUserRepository.login(userLoginDto))
                         .map(UserLoginResDto::toUserLoginResDto)
                         .orElseThrow(NullPointerException::new);
-                createCookie(response, jwtTokenProvider.createToken(userLoginResDto)); //쿠키 생성
+                createCookie(response, jwtTokenProvider.createToken(userLoginResDto)); //쿠키 생성;
                 return userLoginResDto;
             }
 
             throw new ResponeException(LOGIN_USER_ERROR);
 
-        }catch (NullPointerException e){
+        }catch (NullPointerException | UnsupportedEncodingException e){
             e.printStackTrace();
             throw new ResponeException(LOGIN_USER_ERROR);
         }
