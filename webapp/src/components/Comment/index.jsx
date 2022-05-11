@@ -4,11 +4,11 @@ import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import useHandlePublishedDate from 'hooks/useHandlePublichedDate';
 import { setDefaultProfileImage } from 'utils/constant';
-import { getCookie } from 'utils/cookie';
+import { getUserCookie } from 'utils/cookie';
 import { ButtonContainer, Content } from './style';
 
 function Comment({ postId, comment, dispatchComment }) {
-  const userInfo = getCookie('userInfo');
+  const userInfo = getUserCookie();
   // const { myData } = useSelector((state) => state.auth);
   const myNickname = userInfo?.name;
   const myId = userInfo?.id;

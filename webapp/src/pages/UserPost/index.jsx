@@ -2,12 +2,12 @@ import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
-import Loader from 'pages/Loader';
+import Loader from 'components/Loader';
 import MarkdownViewer from 'components/MdViewer';
 import CommentContainer from 'components/CommentContainer';
 import { getUserDetail } from 'apiAction/user';
 import { handleComment } from 'utils/handleComment';
-import { getCookie } from 'utils/cookie';
+import { getUserCookie } from 'utils/cookie';
 import { USER } from 'constant';
 import { Board, Button, Box, Box2, Box3 } from './styleu';
 
@@ -30,7 +30,7 @@ function UserPost() {
   const onClickback = () => {
     navigate(-1);
   };
-  const userInfo = getCookie('userInfo');
+  const userInfo = getUserCookie();
   // const { myData } = useSelector((state) => state.auth);
   const myNickname = userInfo?.name;
   const myId = userInfo?.id;
